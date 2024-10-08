@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private float jump = 400f;
-    private int points = 0;
+    public int points = 0;
 
     public bool isDead = false;
 
@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
             points++;
             UI.GetComponent<UI>().TextImport(points);
             Time.timeScale += 0.01f;
+
+            PlayerPrefs.SetInt("PlayerScore", points); //guarda los puntos en el prefab
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))

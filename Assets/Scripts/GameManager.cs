@@ -1,26 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerController player;
-    public GameObject obstaclesParent;
+    public SceneController sceneController;
     [SerializeField] private InitialGameData gameData;
+
+    public bool isInMainMenu = true;
 
     void Update()
     {
-        if (player.isDead == true)
+        if (isInMainMenu)
+        {
+            if (Input.GetKeyDown(gameData.jump0))
+            {
+                isInMainMenu = false;
+                sceneController.LoadGameScene();
+            }
+        }
+        else if (player.isDead)
         {
             Time.timeScale = 0f;
 
             if (Input.GetKeyDown(gameData.jump0))
             {
-                Time.timeScale = 1f;
-                //obstaclesParent.SetActive(true);
                 player.isDead = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                sceneController.LoadMainMenu();
+                isInMainMenu = true;
             }
         }
     }

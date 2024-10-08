@@ -6,18 +6,23 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
+    [Header("Score")]
     public TMP_Text scoreText;
 
+    [Header("AudioSetting")]
     [SerializeField] private AudioMixer myMixer;
 
     [SerializeField] private Slider MusicSlider;
     [SerializeField] private Slider SFXSlider;
 
+    [Header("PlayerGameData")]
     [SerializeField] private InitialGameData gameData;
-
+    
+    [Header("Pause")]
     private bool isPaused = false;
     public GameObject pausePanel;
 
+    [Header("CurrentVelocity")]
     public float currentVelocity;
 
     void Update()
@@ -37,7 +42,6 @@ public class UI : MonoBehaviour
                 pausePanel.SetActive(false);
                 isPaused = false;
             }
-
         }
     }
 
